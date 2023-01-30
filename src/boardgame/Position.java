@@ -32,4 +32,12 @@ public class Position {
         setRow(row);
         setColumn(column);
     }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "row= " + row +
+                ", column= " + column +
+                '}';
+    }
 }
