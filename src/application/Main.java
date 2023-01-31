@@ -2,7 +2,7 @@ package application;
 
 import chess.ChessMatch;
 
-import static application.UI.printBoard;
+import static views.UI.printBoard;
 
 public class Main {
     public static void main(String[] args) {
