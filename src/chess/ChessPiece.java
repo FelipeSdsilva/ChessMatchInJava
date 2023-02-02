@@ -2,6 +2,7 @@ package chess;
 
 import boardgame.Board;
 import boardgame.Piece;
+import boardgame.Position;
 import chess.enums.Color;
 
 public class ChessPiece extends Piece {
@@ -18,4 +19,17 @@ public class ChessPiece extends Piece {
         return color;
     }
 
+    public void getChessPosition() {
+    }
+
+    protected void isThereOpponentPiece(Position position) {
+    }
+
+    protected void increaseMovieCont() {
+
+    }
+
+    protected void decreaseMovieCont() {
+
+    }
 }
