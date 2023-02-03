@@ -1,8 +1,11 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.Piece;
+import boardgame.Position;
 import chess.enums.Color;
 import chess.pieces.*;
+import exceptions.ChessException;
 
 public class ChessMatch {
 
@@ -35,15 +38,20 @@ public class ChessMatch {
 
     public void initialSetup() {
         setupAllPiecesForMatch();
-
     }
 
     public void possibleMovies() {
 
     }
 
-    public void performChessMove() {
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        validateSourcePosition(source);
+        Piece capturedPiece = makeMove(source, target);
+        return (ChessPiece) capturedPiece;
     }
+
 
     public void replacePromotedPiece(String type) {
     }
@@ -89,6 +97,19 @@ public class ChessMatch {
                     placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.WHITE));
                 }
             }
+        }
+    }
+
+    private Piece makeMove(Position source, Position target) {
+        Piece p = board.removePiece(source);
+        Piece capturedPiece = board.removePiece(target);
+        board.placePiece(p, target);
+        return capturedPiece;
+    }
+
+    private void validateSourcePosition(Position position) {
+        if (!board.thereIsAPiece(position)) {
+            throw new ChessException("There is no piece in source position");
         }
     }
 }
