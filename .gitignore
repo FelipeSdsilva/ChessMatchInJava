@@ -1,5 +1,6 @@
 #Folder IDE
 .idea/
+out/*
 
 # Compiled class file
 *.class
