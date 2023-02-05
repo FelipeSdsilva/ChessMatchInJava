@@ -13,4 +13,9 @@ public class Pawn extends ChessPiece {
     public String toString() {
         return "P ";
     }
+
+    @Override
+    public boolean[][] possibleMovies() {
+        return new boolean[0][];
+    }
 }

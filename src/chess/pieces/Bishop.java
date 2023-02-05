@@ -13,4 +13,9 @@ public class Bishop extends ChessPiece {
     public String toString() {
         return "B ";
     }
+
+    @Override
+    public boolean[][] possibleMovies() {
+        return new boolean[0][];
+    }
 }
