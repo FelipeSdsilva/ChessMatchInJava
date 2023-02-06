@@ -48,10 +48,32 @@ public class ChessMatch {
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();
         validateSourcePosition(source);
+        validateTargetPosition(source, target);
         Piece capturedPiece = makeMove(source, target);
         return (ChessPiece) capturedPiece;
     }
 
+    private Piece makeMove(Position source, Position target) {
+        Piece p = board.removePiece(source);
+        Piece capturedPiece = board.removePiece(target);
+        board.placePiece(p, target);
+        return capturedPiece;
+    }
+
+    private void validateSourcePosition(Position position) {
+        if (!board.thereIsAPiece(position)) {
+            throw new ChessException("There is no piece in source position");
+        }
+        if (!board.piecePosition(position).isThereAnyPossibleMovie()) {
+            throw new ChessException("There is no possibles move for  the chosen piece");
+        }
+    }
+
+    private void validateTargetPosition(Position source, Position target) {
+        if (!board.piecePosition(source).possibleMovie(target)) {
+            throw new ChessException("The chosen piece can't move to target position");
+        }
+    }
 
     public void replacePromotedPiece(String type) {
     }
@@ -94,22 +116,9 @@ public class ChessMatch {
                     placeNewPieceWithChessCoordinates(j, i, new Queen(board, Color.WHITE));
                 }
                 if (i == 2 && j < 105) {
-                    placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.WHITE));
+                    //placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.WHITE));
                 }
             }
-        }
-    }
-
-    private Piece makeMove(Position source, Position target) {
-        Piece p = board.removePiece(source);
-        Piece capturedPiece = board.removePiece(target);
-        board.placePiece(p, target);
-        return capturedPiece;
-    }
-
-    private void validateSourcePosition(Position position) {
-        if (!board.thereIsAPiece(position)) {
-            throw new ChessException("There is no piece in source position");
         }
     }
 }
