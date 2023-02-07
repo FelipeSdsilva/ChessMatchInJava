@@ -2,6 +2,8 @@ package boardgame;
 
 import exceptions.BoarderException;
 
+import static views.MessageError.*;
+
 public class Board {
 
     private final int rows;
@@ -10,7 +12,7 @@ public class Board {
 
     public Board(int rows, int columns) {
         if (rows < 1 && columns < 1) {
-            throw new BoarderException("Error creating board: There must ber at least 1 row and 1 column");
+            throw new BoarderException(valueTheBoardInvalid());
         }
         this.rows = rows;
         this.columns = columns;
@@ -27,21 +29,21 @@ public class Board {
 
     public Piece piece(int row, int column) {
         if (!positionExists(row, column)) {
-            throw new BoarderException("Position not on the board");
+            throw new BoarderException(notPositionOnBoard());
         }
         return pieces[row][column];
     }
 
     public Piece piecePosition(Position position) {
         if (!positionExists(position)) {
-            throw new BoarderException("Position not on the board");
+            throw new BoarderException(notPositionOnBoard());
         }
         return pieces[position.getRow()][position.getColumn()];
     }
 
     public void placePiece(Piece piece, Position position) {
         if (thereIsAPiece(position)) {
-            throw new BoarderException("There is already a piece on position " + position);
+            throw new BoarderException(existPieceInTheBoard() + position);
         }
         pieces[position.getRow()][position.getColumn()] = piece;
         piece.position = position;
@@ -49,7 +51,7 @@ public class Board {
 
     public Piece removePiece(Position position) {
         if (!positionExists(position)) {
-            throw new BoarderException("Position not on the board");
+            throw new BoarderException(notPositionOnBoard());
         }
         if (piecePosition(position) == null) {
             return null;
@@ -71,7 +73,7 @@ public class Board {
 
     public boolean thereIsAPiece(Position position) {
         if (!positionExists(position)) {
-            throw new BoarderException("Position not on the board");
+            throw new BoarderException(notPositionOnBoard());
         }
         return piecePosition(position) != null;
     }

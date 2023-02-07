@@ -6,6 +6,7 @@ import boardgame.Position;
 import chess.enums.Color;
 import chess.pieces.*;
 import exceptions.ChessException;
+import views.MessageError;
 
 public class ChessMatch {
 
@@ -36,6 +37,7 @@ public class ChessMatch {
         board.placePiece(piece, new ChessPosition(column, row).toPosition());
     }
 
+
     public void initialSetup() {
         setupAllPiecesForMatch();
     }
@@ -62,16 +64,16 @@ public class ChessMatch {
 
     private void validateSourcePosition(Position position) {
         if (!board.thereIsAPiece(position)) {
-            throw new ChessException("There is no piece in source position");
+            throw new ChessException(MessageError.thereIsNotAPiece());
         }
         if (!board.piecePosition(position).isThereAnyPossibleMovie()) {
-            throw new ChessException("There is no possibles move for  the chosen piece");
+            throw new ChessException(MessageError.isNotPossibleMovie());
         }
     }
 
     private void validateTargetPosition(Position source, Position target) {
         if (!board.piecePosition(source).possibleMovie(target)) {
-            throw new ChessException("The chosen piece can't move to target position");
+            throw new ChessException(MessageError.notMovePieceChosen());
         }
     }
 
