@@ -9,8 +9,7 @@ import views.UI;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static views.UI.clearScreen;
-import static views.UI.printBoard;
+import static views.UI.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,6 +23,10 @@ public class Main {
                 printBoard(chessMatch.getPieces());
                 System.out.print("\nSource: ");
                 ChessPosition source = UI.readChessPosition(sc);
+
+                boolean[][] possibleMoves = chessMatch.possibleMovies(source);
+                clearScreen();
+                printBoardWithPossibleMoves(chessMatch.getPieces(), possibleMoves);
 
                 System.out.print("\nTarget: ");
                 ChessPosition target = UI.readChessPosition(sc);

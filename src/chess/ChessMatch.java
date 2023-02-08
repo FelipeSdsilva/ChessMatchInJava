@@ -42,8 +42,10 @@ public class ChessMatch {
         setupAllPiecesForMatch();
     }
 
-    public void possibleMovies() {
-
+    public boolean[][] possibleMovies(ChessPosition sourcePosition) {
+        Position position = sourcePosition.toPosition();
+        validateSourcePosition(position);
+        return board.piecePosition(position).possibleMovies();
     }
 
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
