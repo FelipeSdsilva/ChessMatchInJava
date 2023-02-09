@@ -7,6 +7,8 @@ import chess.enums.Color;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static views.MessageError.chessValuesValid;
+
 public class UI {
 
 
@@ -41,7 +43,7 @@ public class UI {
             int row = Integer.parseInt(s.substring(1));
             return new ChessPosition(column, row);
         } catch (RuntimeException e) {
-            throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
+            throw new InputMismatchException(chessValuesValid());
         }
 
     }
@@ -57,7 +59,7 @@ public class UI {
         System.out.println("  a b c d e f g h");
     }
 
-    public static void printBoardWithPossibleMoves(ChessPiece[][] pieces, boolean[][] possibleMoves) {
+    public static void printBackgroundColorWithPossibleMovesOfPiece(ChessPiece[][] pieces, boolean[][] possibleMoves) {
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((8 - i) + " ");
             for (int j = 0; j < pieces.length; j++) {
