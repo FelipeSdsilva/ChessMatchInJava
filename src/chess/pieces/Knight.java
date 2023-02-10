@@ -16,6 +16,10 @@ public class Knight extends ChessPiece {
 
     @Override
     public boolean[][] possibleMovies() {
-        return new boolean[0][];
+        boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+
+
+
+        return mat;
     }
 }
