@@ -3,7 +3,7 @@ package application;
 import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
-import exceptions.ChessException;
+import exceptions.BoarderException;
 import views.UI;
 
 import java.util.InputMismatchException;
@@ -33,7 +33,7 @@ public class Main {
 
                 ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
 
-            } catch (ChessException e) {
+            } catch (BoarderException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             } catch (InputMismatchException e) {
