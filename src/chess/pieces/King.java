@@ -15,11 +15,6 @@ public class King extends ChessPiece {
         return "K ";
     }
 
-    public boolean canMove(Position position) {
-        ChessPiece p = (ChessPiece) getBoard().piecePosition(position);
-        return p == null || p.getColor() != getColor();
-    }
-
     @Override
     public boolean[][] possibleMovies() {
         boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
