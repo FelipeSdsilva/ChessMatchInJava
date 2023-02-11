@@ -28,4 +28,8 @@ public class MessageError {
     public static String valueTheBoardInvalid() {
         return "Error creating board: There must ber at least 1 row and 1 column";
     }
+
+    public static String notYourPiece() {
+        return "The chosen piece is not yours";
+    }
 }

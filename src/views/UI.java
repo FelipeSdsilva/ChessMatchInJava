@@ -1,5 +1,6 @@
 package views;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.enums.Color;
@@ -46,6 +47,14 @@ public class UI {
             throw new InputMismatchException(chessValuesValid());
         }
 
+    }
+
+    public static void printMatch(ChessMatch chessMatch) {
+        printBoard(chessMatch.getPieces());
+        System.out.println("\n" +
+                "Turn: " + chessMatch.getTurn()
+                + "\n" +
+                "Waiting player: " + chessMatch.getCurrentPlayer());
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
