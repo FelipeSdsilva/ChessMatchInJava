@@ -6,7 +6,9 @@ import chess.ChessPosition;
 import exceptions.BoarderException;
 import views.UI;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import static views.UI.*;
@@ -17,10 +19,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         ChessMatch chessMatch = new ChessMatch();
+        List<ChessPiece> captured = new ArrayList<>();
+
         while (true) {
             try {
                 clearScreen();
-                printMatch(chessMatch);
+                printMatch(chessMatch, captured);
                 System.out.print("\nSource: ");
                 ChessPosition source = UI.readChessPosition(sc);
 
@@ -33,10 +37,17 @@ public class Main {
 
                 ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
 
+                if (captured != null) {
+                    captured.add(capturedPiece);
+                }
+
             } catch (BoarderException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             } catch (InputMismatchException e) {
+                System.out.println(e.getMessage());
+                sc.nextLine();
+            } catch (NullPointerException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             }

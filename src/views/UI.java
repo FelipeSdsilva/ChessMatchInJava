@@ -5,7 +5,9 @@ import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.enums.Color;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import static views.MessageError.chessValuesValid;
@@ -49,8 +51,9 @@ public class UI {
 
     }
 
-    public static void printMatch(ChessMatch chessMatch) {
+    public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
         printBoard(chessMatch.getPieces());
+        printCapturedPieces(captured);
         System.out.println("\n" +
                 "Turn: " + chessMatch.getTurn()
                 + "\n" +
@@ -93,5 +96,19 @@ public class UI {
             }
         }
         System.out.print("");
+    }
+
+    private static void printCapturedPieces(List<ChessPiece> captured) {
+        List<ChessPiece> captWithe = captured.stream().filter(x -> x.getColor() == Color.WHITE).toList();
+        List<ChessPiece> captBlack = captured.stream().filter(x -> x.getColor() == Color.BLACK).toList();
+        System.out.println("Captured Pieces:" +
+                "\n" +
+                "White: " + ANSI_WHITE + Arrays.toString(captWithe.toArray()) + ANSI_RESET +
+                "\n" +
+                "Black: " + ANSI_YELLOW + Arrays.toString(captBlack.toArray()) + ANSI_RESET);
+
+        for (ChessPiece capt : captured) {
+            System.out.println("");
+        }
     }
 }
