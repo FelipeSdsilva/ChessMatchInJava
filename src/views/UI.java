@@ -106,9 +106,5 @@ public class UI {
                 "White: " + ANSI_WHITE + Arrays.toString(captWithe.toArray()) + ANSI_RESET +
                 "\n" +
                 "Black: " + ANSI_YELLOW + Arrays.toString(captBlack.toArray()) + ANSI_RESET);
-
-        for (ChessPiece capt : captured) {
-            System.out.println("");
-        }
     }
 }
