@@ -15,7 +15,7 @@ public class Pawn extends ChessPiece {
     }
 
     @Override
-    public boolean[][] possibleMovies() {
+    public boolean[][] possibleMoves() {
         return new boolean[0][];
     }
 }

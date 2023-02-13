@@ -1,5 +1,7 @@
 package views;
 
+import chess.enums.Color;
+
 public class MessageError {
     public static String thereIsNotAPiece() {
         return "There is no piece in source position";
@@ -31,5 +33,13 @@ public class MessageError {
 
     public static String notYourPiece() {
         return "The chosen piece is not yours";
+    }
+
+    public static String notKingColor(Color color) {
+        return "There is no " + color + " king on the board";
+    }
+
+    public static String cantNotStayInCheck() {
+        return "You can't put yourself in check";
     }
 }

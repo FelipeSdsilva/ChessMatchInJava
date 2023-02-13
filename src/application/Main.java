@@ -3,7 +3,7 @@ package application;
 import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
-import exceptions.BoarderException;
+import exceptions.ChessException;
 import views.UI;
 
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class Main {
                     captured.add(capturedPiece);
                 }
 
-            } catch (BoarderException e) {
+            } catch (ChessException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             } catch (InputMismatchException e) {
