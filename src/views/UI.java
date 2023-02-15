@@ -59,7 +59,7 @@ public class UI {
                 + "\n" +
                 "Waiting player: " + chessMatch.getCurrentPlayer());
         if (chessMatch.getCheck()) {
-            System.out.println("CHECK");
+            System.out.println("CHECK!");
         }
     }
 
