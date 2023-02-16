@@ -72,7 +72,7 @@ public class UI {
             }
             System.out.println(ANSI_RESET);
         }
-        System.out.println(ANSI_BLACK_BACKGROUND + "  a b c d e f g h");
+        System.out.println(ANSI_BLACK_BACKGROUND + "  a b c d e f g h " + ANSI_RESET);
     }
 
     private static void printBackgroundBoard(int i, int j) {
