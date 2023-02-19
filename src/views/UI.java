@@ -100,7 +100,7 @@ public class UI {
                 Captured Pieces:
                                 
                 White: """ + ANSI_CYAN + Arrays.toString(captWithe.toArray()) + ANSI_RESET +
-                "\nBlack: " + ANSI_RED + Arrays.toString(captBlack.toArray()) + ANSI_RESET);
+                "\nBlack:" + ANSI_RED + Arrays.toString(captBlack.toArray()) + ANSI_RESET);
     }
 }
 //public static final String ANSI_GREEN = "\
