@@ -47,6 +47,13 @@ public class ChessMatch {
         return check;
     }
 
+    public List<Piece> getPiecesOnTheBoard() {
+        return piecesOnTheBoard;
+    }
+
+    public List<Piece> getCapturedPieces() {
+        return capturedPieces;
+    }
 
     public ChessPiece[][] getPieces() {
         ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
@@ -63,7 +70,7 @@ public class ChessMatch {
     }
 
     private ChessPiece king(Color color) {
-        List<Piece> pieceList = piecesOnTheBoard.stream().filter(x -> ((ChessPiece) x).getColor() == opponent(color)).toList();
+        List<Piece> pieceList = piecesOnTheBoard.stream().filter(x -> ((ChessPiece) x).getColor() == color).toList();
         for (Piece p : pieceList) {
             if (p instanceof King) {
                 return (ChessPiece) p;
@@ -77,13 +84,13 @@ public class ChessMatch {
         List<Piece> opponentPieces = piecesOnTheBoard.stream().filter(x -> ((ChessPiece) x).getColor() == opponent(color)).toList();
         for (Piece p : opponentPieces) {
             boolean[][] mat = p.possibleMoves();
+            if (mat[kingPosition.getRow()][kingPosition.getColumn()]) {
+                return true;
+            }
         }
         return false;
     }
 
-    public void initialSetup() {
-        setupAllPiecesForMatch();
-    }
 
     public boolean[][] possibleMovies(ChessPosition sourcePosition) {
         Position position = sourcePosition.toPosition();
@@ -103,7 +110,7 @@ public class ChessMatch {
             throw new ChessException(cantNotStayInCheck());
         }
 
-        check = (testCheck(opponent(currentPlayer))) ? true : false;
+        check = testCheck(opponent(currentPlayer));
 
         nextTurn();
         return (ChessPiece) capturedPiece;
@@ -188,7 +195,12 @@ public class ChessMatch {
         piecesOnTheBoard.add(piece);
     }
 
-    public void replacePromotedPiece(String type) {
+    /*
+        public void replacePromotedPiece(String type) {
+        }
+    */
+    public void initialSetup() {
+        setupAllPiecesForMatch();
     }
 
     public void setupAllPiecesForMatch() {
