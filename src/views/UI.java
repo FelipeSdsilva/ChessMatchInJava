@@ -53,7 +53,6 @@ public class UI {
     public static void printBoard(ChessPiece[][] pieces) {
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((i == 8) ? ANSI_WHITE_BACKGROUND : ANSI_BLACK_BACKGROUND + (8 - i) + " ");
-
             for (int j = 0; j < pieces.length; j++) {
                 printBackgroundBoard(i, j);
                 printPiece(pieces[i][j], false);
