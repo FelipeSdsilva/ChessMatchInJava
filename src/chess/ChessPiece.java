@@ -39,9 +39,4 @@ public abstract class ChessPiece extends Piece {
     protected void decreaseMoveCount() {
         moveCount--;
     }
-
-    public boolean canMove(Position position) {
-        ChessPiece p = (ChessPiece) getBoard().piecePosition(position);
-        return p == null || p.getColor() != getColor();
-    }
 }
