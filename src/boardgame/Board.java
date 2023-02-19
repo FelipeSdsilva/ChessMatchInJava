@@ -11,7 +11,7 @@ public class Board {
     private final Piece[][] pieces;
 
     public Board(int rows, int columns) {
-        if (rows < 1 && columns < 1) throw new BoarderException(valueTheBoardInvalid());
+        if (rows < 1 || columns < 1) throw new BoarderException(valueTheBoardInvalid());
         this.rows = rows;
         this.columns = columns;
         pieces = new Piece[rows][columns];
