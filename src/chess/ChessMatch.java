@@ -83,9 +83,11 @@ public class ChessMatch {
         Position kingPosition = king(color).getChessPosition().toPosition();
         List<Piece> opponentPieces = piecesOnTheBoard.stream().filter(x -> ((ChessPiece) x).getColor() == opponent(color)).toList();
         for (Piece p : opponentPieces) {
-            boolean[][] mat = p.possibleMoves();
-            if (mat[kingPosition.getRow()][kingPosition.getColumn()]) {
-                return true;
+            if (p instanceof King) {
+                boolean[][] mat = p.possibleMoves();
+                if (mat[kingPosition.getRow()][kingPosition.getColumn()]) {
+                    return true;
+                }
             }
         }
         return false;
@@ -126,13 +128,11 @@ public class ChessMatch {
             piecesOnTheBoard.remove(capturedPiece);
             capturedPieces.add(capturedPiece);
         }
-
         if (p instanceof King && target.getColumn() == source.getColumn() + 2) {
             Position sourceDestRook = new Position(source.getRow(), source.getColumn() + 3);
             Position targetDestRook = new Position(target.getRow(), target.getColumn() + 1);
             ChessPiece rook = (ChessPiece) board.removePiece(sourceDestRook);
             board.placePiece(rook, targetDestRook);
-            rook.increaseMoveCount();
         }
 
         if (p instanceof King && target.getColumn() == source.getColumn() - 2) {
@@ -140,7 +140,6 @@ public class ChessMatch {
             Position targetDestRook = new Position(target.getRow(), target.getColumn() - 1);
             ChessPiece rook = (ChessPiece) board.removePiece(sourceDestRook);
             board.placePiece(rook, targetDestRook);
-            rook.increaseMoveCount();
         }
 
         return capturedPiece;
@@ -207,22 +206,16 @@ public class ChessMatch {
         for (int i = 1; i <= board.getRows(); i++) {
             for (int c = 0; c < board.getColumns(); c++) {
                 char j = (char) (97 + c);
-                if (i == 8 && j == 97 || i == 8 && j == 104)
-                    placeNewPieceWithChessCoordinates(j, i, new Rook(board, Color.BLACK));
-                if (i == 8 && j == 98 || i == 8 && j == 103)
-                    placeNewPieceWithChessCoordinates(j, i, new Knight(board, Color.BLACK));
-                if (i == 8 && j == 99 || i == 8 && j == 102)
-                    placeNewPieceWithChessCoordinates(j, i, new Bishop(board, Color.BLACK));
+                if (i == 8 && j == 97 || i == 8 && j == 104) placeNewPieceWithChessCoordinates(j, i, new Rook(board, Color.BLACK));
+                if (i == 8 && j == 98 || i == 8 && j == 103) placeNewPieceWithChessCoordinates(j, i, new Knight(board, Color.BLACK));
+                if (i == 8 && j == 99 || i == 8 && j == 102) placeNewPieceWithChessCoordinates(j, i, new Bishop(board, Color.BLACK));
                 if (i == 8 && j == 100) placeNewPieceWithChessCoordinates(j, i, new King(board, Color.BLACK, this));
                 if (i == 8 && j == 101) placeNewPieceWithChessCoordinates(j, i, new Queen(board, Color.BLACK));
                 if (i == 7 && j < 105) placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.BLACK));
 
-                if (i == 1 && j == 97 || i == 1 && j == 104)
-                    placeNewPieceWithChessCoordinates(j, i, new Rook(board, Color.WHITE));
-                if (i == 1 && j == 98 || i == 1 && j == 103)
-                    placeNewPieceWithChessCoordinates(j, i, new Knight(board, Color.WHITE));
-                if (i == 1 && j == 99 || i == 1 && j == 102)
-                    placeNewPieceWithChessCoordinates(j, i, new Bishop(board, Color.WHITE));
+                if (i == 1 && j == 97 || i == 1 && j == 104) placeNewPieceWithChessCoordinates(j, i, new Rook(board, Color.WHITE));
+                if (i == 1 && j == 98 || i == 1 && j == 103) placeNewPieceWithChessCoordinates(j, i, new Knight(board, Color.WHITE));
+                if (i == 1 && j == 99 || i == 1 && j == 102) placeNewPieceWithChessCoordinates(j, i, new Bishop(board, Color.WHITE));
                 if (i == 1 && j == 101) placeNewPieceWithChessCoordinates(j, i, new Queen(board, Color.WHITE));
                 if (i == 1 && j == 100) placeNewPieceWithChessCoordinates(j, i, new King(board, Color.WHITE, this));
                 if (i == 2 && j < 105) placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.WHITE));
