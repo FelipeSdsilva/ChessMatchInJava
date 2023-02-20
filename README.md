@@ -9,7 +9,8 @@ create by https://github.com/acenelio
 
 # Layout in console
 
-![image](https://user-images.githubusercontent.com/47900701/219396286-b19a044e-d206-48c7-bcf0-05578c5a39a1.png)
+![image](https://user-images.githubusercontent.com/47900701/220191804-da384a3b-2e4a-423e-9c06-660228d6e4b0.png)
+
 
 # Method setupAllPieces
 
@@ -23,7 +24,7 @@ Create in middle of development, inciative for use clear code.
                 if (i == 8 && j == 97 || i == 8 && j == 104) placeNewPieceWithChessCoordinates(j, i, new Rook(board, Color.BLACK));
                 if (i == 8 && j == 98 || i == 8 && j == 103) placeNewPieceWithChessCoordinates(j, i, new Knight(board, Color.BLACK));
                 if (i == 8 && j == 99 || i == 8 && j == 102) placeNewPieceWithChessCoordinates(j, i, new Bishop(board, Color.BLACK));
-                if (i == 8 && j == 100) placeNewPieceWithChessCoordinates(j, i, new King(board, Color.BLACK));
+                if (i == 8 && j == 100) placeNewPieceWithChessCoordinates(j, i, new King(board, Color.BLACK, this));
                 if (i == 8 && j == 101) placeNewPieceWithChessCoordinates(j, i, new Queen(board, Color.BLACK));
                 if (i == 7 && j < 105) placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.BLACK));
 
@@ -31,11 +32,10 @@ Create in middle of development, inciative for use clear code.
                 if (i == 1 && j == 98 || i == 1 && j == 103) placeNewPieceWithChessCoordinates(j, i, new Knight(board, Color.WHITE));
                 if (i == 1 && j == 99 || i == 1 && j == 102) placeNewPieceWithChessCoordinates(j, i, new Bishop(board, Color.WHITE));
                 if (i == 1 && j == 101) placeNewPieceWithChessCoordinates(j, i, new Queen(board, Color.WHITE));
-                if (i == 1 && j == 100) placeNewPieceWithChessCoordinates(j, i, new King(board, Color.WHITE));
+                if (i == 1 && j == 100) placeNewPieceWithChessCoordinates(j, i, new King(board, Color.WHITE, this));
                 if (i == 2 && j < 105) placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.WHITE));
             }
         }
     }
-
 ```
 
