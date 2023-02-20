@@ -51,27 +51,31 @@ public class UI {
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
+        System.out.println(ANSI_BLACK_BACKGROUND + "  a b c d e f g h   " + ANSI_RESET);
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((i == 8) ? ANSI_WHITE_BACKGROUND : ANSI_BLACK_BACKGROUND + (8 - i) + " ");
             for (int j = 0; j < pieces.length; j++) {
                 printBackgroundBoard(i, j);
                 printPiece(pieces[i][j], false);
             }
+            System.out.print((i == 8) ? ANSI_WHITE_BACKGROUND : ANSI_BLACK_BACKGROUND + (8 - i) + " ");
             System.out.println(ANSI_RESET);
         }
-        System.out.println(ANSI_BLACK_BACKGROUND + "  a b c d e f g h " + ANSI_RESET);
+        System.out.println(ANSI_BLACK_BACKGROUND + "  a b c d e f g h   " + ANSI_RESET);
     }
 
     public static void printBoardBackgroundColorWithPossibleMovesOfPiece(ChessPiece[][] pieces, boolean[][] possibleMoves) {
+        System.out.println(ANSI_BLACK_BACKGROUND + "  a b c d e f g h   " + ANSI_RESET);
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((i == 8) ? ANSI_WHITE_BACKGROUND : ANSI_BLACK_BACKGROUND + (8 - i) + " ");
             for (int j = 0; j < pieces.length; j++) {
                 printBackgroundBoard(i, j);
                 printPiece(pieces[i][j], possibleMoves[i][j]);
             }
+            System.out.print((i == 8) ? ANSI_WHITE_BACKGROUND : ANSI_BLACK_BACKGROUND + (8 - i) + " ");
             System.out.println(ANSI_RESET);
         }
-        System.out.println(ANSI_BLACK_BACKGROUND + "  a b c d e f g h " + ANSI_RESET);
+        System.out.println(ANSI_BLACK_BACKGROUND + "  a b c d e f g h   " + ANSI_RESET);
     }
 
     private static void printBackgroundBoard(int i, int j) {
