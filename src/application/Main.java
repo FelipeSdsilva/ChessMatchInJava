@@ -30,7 +30,7 @@ public class Main {
 
                 boolean[][] possibleMoves = chessMatch.possibleMovies(source);
                 clearScreen();
-                printBackgroundColorWithPossibleMovesOfPiece(chessMatch.getPieces(), possibleMoves);
+                printBoardBackgroundColorWithPossibleMovesOfPiece(chessMatch.getPieces(), possibleMoves);
 
                 System.out.print("\nTarget: ");
                 ChessPosition target = UI.readChessPosition(sc);
