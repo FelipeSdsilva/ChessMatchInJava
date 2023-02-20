@@ -22,7 +22,7 @@ public class King extends ChessPiece {
 
     private boolean canMove(Position position) {
         ChessPiece p = (ChessPiece) getBoard().piecePosition(position);
-        return p != null || p.getColor() != getColor();
+        return p == null || p.getColor() != getColor();
     }
 /*
     private boolean testRookCastling(Position position) {
