@@ -21,7 +21,7 @@ public class Main {
         ChessMatch chessMatch = new ChessMatch();
         List<ChessPiece> captured = new ArrayList<>();
 
-        while (!chessMatch.isCheckMate()) {
+        while (chessMatch.isCheckMate()) {
             try {
                 clearScreen();
                 System.out.println();

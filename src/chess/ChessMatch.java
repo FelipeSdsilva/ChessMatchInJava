@@ -48,7 +48,7 @@ public class ChessMatch {
     }
 
     public boolean isCheckMate() {
-        return checkMate;
+        return !checkMate;
     }
 
     public ChessPiece getEnPassantVulnerable() {
@@ -143,7 +143,7 @@ public class ChessMatch {
             throw new ChessException(cantNotStayInCheck());
         }
 
-        // ChessPiece movedPiece = (ChessPiece) board.piecePosition(target);
+        ChessPiece movedPiece = (ChessPiece) board.piecePosition(target);
 
         check = testCheck(opponent(currentPlayer));
 
@@ -151,6 +151,13 @@ public class ChessMatch {
             checkMate = true;
         } else {
             nextTurn();
+        }
+
+        if (movedPiece instanceof Pawn && (target.getRow() == source.getRow() - 2
+                || target.getRow() == source.getRow() + 2)) {
+            enPassantVulnerable = movedPiece;
+        } else {
+            enPassantVulnerable = null;
         }
         return (ChessPiece) capturedPiece;
     }
@@ -177,6 +184,19 @@ public class ChessMatch {
             Position targetDestRook = new Position(target.getRow(), target.getColumn() + 1);
             ChessPiece rook = (ChessPiece) board.removePiece(sourceDestRook);
             board.placePiece(rook, targetDestRook);
+        }
+
+        if (p instanceof Pawn) {
+            if (source.getColumn() != target.getColumn() && capturedPiece == null) {
+                Position pawnPosition;
+                if (p.getColor() == Color.WHITE) pawnPosition = new Position(target.getRow() + 1, target.getColumn());
+
+                else pawnPosition = new Position(target.getRow() - 1, target.getColumn());
+
+                capturedPiece = board.removePiece(pawnPosition);
+                capturedPieces.add(capturedPiece);
+                piecesOnTheBoard.remove(capturedPiece);
+            }
         }
 
         return capturedPiece;
@@ -208,6 +228,18 @@ public class ChessMatch {
             board.placePiece(rook, sourceDestRook);
             rook.decreaseMoveCount();
         }
+
+        if (p instanceof Pawn) {
+            if (source.getColumn() != target.getColumn() && capturedPiece == enPassantVulnerable) {
+                ChessPiece pawn = (ChessPiece) board.removePiece(target);
+                Position pawnPosition;
+                if (p.getColor() == Color.WHITE) pawnPosition = new Position(3, target.getColumn());
+
+                else pawnPosition = new Position(4, target.getColumn());
+
+                board.placePiece(pawn, pawnPosition);
+            }
+        }
     }
 
     public void nextTurn() {
@@ -231,10 +263,9 @@ public class ChessMatch {
         piecesOnTheBoard.add(piece);
     }
 
-    /*
-        public void replacePromotedPiece(String type) {
-        }
-    */
+    public void replacePromotedPiece(String type) {
+    }
+
     public void initialSetup() {
         setupAllPiecesForMatch();
     }
@@ -248,14 +279,14 @@ public class ChessMatch {
                 if (i == 8 && j == 99 || i == 8 && j == 102) placeNewPieceWithChessCoordinates(j, i, new Bishop(board, Color.BLACK));
                 if (i == 8 && j == 100) placeNewPieceWithChessCoordinates(j, i, new King(board, Color.BLACK, this));
                 if (i == 8 && j == 101) placeNewPieceWithChessCoordinates(j, i, new Queen(board, Color.BLACK));
-                if (i == 7 && j < 105) placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.BLACK));
+                if (i == 7 && j < 105) placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.BLACK,this));
 
                 if (i == 1 && j == 97 || i == 1 && j == 104) placeNewPieceWithChessCoordinates(j, i, new Rook(board, Color.WHITE));
                 if (i == 1 && j == 98 || i == 1 && j == 103) placeNewPieceWithChessCoordinates(j, i, new Knight(board, Color.WHITE));
                 if (i == 1 && j == 99 || i == 1 && j == 102) placeNewPieceWithChessCoordinates(j, i, new Bishop(board, Color.WHITE));
                 if (i == 1 && j == 101) placeNewPieceWithChessCoordinates(j, i, new Queen(board, Color.WHITE));
                 if (i == 1 && j == 100) placeNewPieceWithChessCoordinates(j, i, new King(board, Color.WHITE, this));
-                if (i == 2 && j < 105) placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.WHITE));
+                if (i == 2 && j < 105) placeNewPieceWithChessCoordinates(j, i, new Pawn(board, Color.WHITE,this));
             }
         }
     }

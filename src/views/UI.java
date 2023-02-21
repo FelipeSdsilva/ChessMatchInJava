@@ -41,8 +41,7 @@ public class UI {
         printCapturedPieces(captured);
         System.out.println("\n" +
                 "Turn: " + chessMatch.getTurn()
-                + "\n");
-        if (!chessMatch.isCheckMate()) {
+                + "\n");  if (chessMatch.isCheckMate()) {
             System.out.println("Waiting player: " +
                     ((chessMatch.getCurrentPlayer() == Color.WHITE) ? ANSI_CYAN : ANSI_RED) +
                     chessMatch.getCurrentPlayer() + ANSI_RESET);
