@@ -1,6 +1,23 @@
 # Chess Match In Java
 Project is a Chess Match in terminal Java. WIth objective usually learn more for structure my projects.  And  uses the clean code in this application Java.
 
+#Play One Chess Match
+
+Prerequisite: Java 17.
+
+ #Download file Chess.rar
+ <a href="https://github.com/FelipeSdsilva/ChessMatchInJava/raw/main/Chess.rar" download> Click Here </a>
+ 
+ ```bash
+ #open in terminal, folder Chess.
+ cd Chess.
+ 
+ #execute the project.
+ java application/Main
+ 
+```
+
+
 # UML Modell
 
 ![image](https://user-images.githubusercontent.com/47900701/219397622-af95c7c1-9663-4045-b0d7-1cf2ec6ebe7d.png)
