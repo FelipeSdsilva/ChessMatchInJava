@@ -130,14 +130,14 @@ public class ChessMatch {
         }
         if (p instanceof King && target.getColumn() == source.getColumn() + 2) {
             Position sourceDestRook = new Position(source.getRow(), source.getColumn() + 4);
-            Position targetDestRook = new Position(target.getRow(), target.getColumn() + 1);
+            Position targetDestRook = new Position(target.getRow(), target.getColumn() - 1);
             ChessPiece rook = (ChessPiece) board.removePiece(sourceDestRook);
             board.placePiece(rook, targetDestRook);
         }
 
         if (p instanceof King && target.getColumn() == source.getColumn() - 2) {
             Position sourceDestRook = new Position(source.getRow(), source.getColumn() - 3);
-            Position targetDestRook = new Position(target.getRow(), target.getColumn() - 1);
+            Position targetDestRook = new Position(target.getRow(), target.getColumn() + 1);
             ChessPiece rook = (ChessPiece) board.removePiece(sourceDestRook);
             board.placePiece(rook, targetDestRook);
         }
