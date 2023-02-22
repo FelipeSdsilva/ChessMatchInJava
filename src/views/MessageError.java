@@ -42,4 +42,12 @@ public class MessageError {
     public static String cantNotStayInCheck() {
         return "You can't put yourself in check";
     }
+
+    public static String thereIsNoPromoted() {
+        return "There is no piece to be promoted";
+    }
+
+    public static String invalidTypePromoted(){
+        return "Invalid type for promotion";
+    }
 }

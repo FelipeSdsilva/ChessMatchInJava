@@ -27,7 +27,7 @@ public class UI {
 
     public static ChessPosition readChessPosition(Scanner sc) {
         try {
-            String s = sc.nextLine();
+            String s = sc.nextLine().toLowerCase();
             char column = s.charAt(0);
             int row = Integer.parseInt(s.substring(1));
             return new ChessPosition(column, row);
@@ -41,7 +41,8 @@ public class UI {
         printCapturedPieces(captured);
         System.out.println("\n" +
                 "Turn: " + chessMatch.getTurn()
-                + "\n");  if (chessMatch.isCheckMate()) {
+                + "\n");
+        if (chessMatch.isCheckMate()) {
             System.out.println("Waiting player: " +
                     ((chessMatch.getCurrentPlayer() == Color.WHITE) ? ANSI_CYAN : ANSI_RED) +
                     chessMatch.getCurrentPlayer() + ANSI_RESET);
